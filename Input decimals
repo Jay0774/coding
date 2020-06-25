@@ -1,0 +1,71 @@
+ PROBLEM:
+
+Input decimals
+Write a program that takes as input decimals and prints the decimals.
+
+Input Format
+The first line contains N, the number of test cases.
+
+The N lines after that contain the decimals that you need to print.
+
+Output Format
+Print each decimal in a single line
+
+Sample Input / Output
+Input
+3
+2.5
+3.99
+145.678
+
+Output
+2.5
+3.99
+145.678
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+SOLUTION:
+
+#include<iostream>
+#include<iomanip>
+#include<string>
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        char s[100];
+        int i,l;
+        cin>>s;
+        l=strlen(s);
+        for(i=0;i<l;i++)
+        {
+          if(s[i]=='0')
+          {
+              if(s[i+1]=='\0')
+              {
+                 
+              }
+              else
+              {
+                   cout<<s[i];
+              }
+          }
+            else
+            {
+                cout<<s[i];
+            }
+        }   
+        cout<<endl;
+    }
+}
+
+
+
+
