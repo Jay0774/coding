@@ -1,0 +1,74 @@
+PROBLEM:
+
+Identify the logic behind the series
+6 28 66 120 190 276....
+
+The base of the Pyramid will be the widest and will start converging towards the top where there will only be one element. Each successive layer will have one number less than that on the layer below it. The width of the Pyramid is specified by an input parameter N. In other words there will be N numbers on the bottom layer of the pyramid.
+
+The Pyramid construction rules are as follows:
+
+First number in the series should be at the top of the Pyramid
+Last N number of the series should be on the bottom-most layer of the Pyramid, with Nth number being the right-most number of this layer.
+Numbers less than 5-digits must be padded with zeroes to maintain the sanctity of a Pyramid when printed. Have a look at the examples below to get a pictorial understanding of what this rule actually means.
+Example
+
+If input is 2, output will be
+   00006   
+00028 00066
+
+If input is 3, output will be
+      00006   
+   00028 00066   
+00120 00190 00276
+
+Constraints:
+0 < N <= 14
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+SOLUTION:
+
+#include<iostream>
+#include<iomanip>
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,i,j,sp,m,d,k;
+        cin>>n;
+        m=n*(n+1)*0.5;
+        int a[m];
+        a[0]=6;
+        a[1]=28;
+        for(i=2;i<m;i++)
+        a[i]=a[i-1]+22+(i-1)*16;
+        k=0;
+        for(i=n;i>0;i--)
+        {
+            for(sp=3*(i-1);sp>0;sp--)
+            {
+                cout<<" ";
+            }
+            for(j=n;j>=i;j--)
+            {
+            std::cout<<std::fixed;
+            std::cout<<std::setw(5);
+            std::cout<<std::setfill('0');
+            std::cout<<a[k]<<" ";
+            k++;
+            }
+            cout<<endl;
+        }
+        
+    }
+}
+
+
+
+
