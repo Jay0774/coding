@@ -1,0 +1,35 @@
+SOLUTION:
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string a[10]={"sunday","monday","tuesday","wednesday","thursday","friday","saturday","kryptonday","coluday","daxamday"};
+        int n,q,d;
+        cin>>n;
+        n=n;
+        d=n/296;
+        q=n%296;
+        if(q==0)
+        {
+            cout<<"sunday"<<endl;
+        }
+        else
+        {
+            n=n-296*d;
+            q=n%10;
+            d=n/10;
+            cout<<a[q]<<endl;
+        }
+    }
+    return 0;
+}
+
+
+
+
