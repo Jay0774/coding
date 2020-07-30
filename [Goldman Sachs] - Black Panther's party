@@ -1,0 +1,112 @@
+SOLUTION:
+
+#include<iostream>
+#include<bits/stdc++.h>
+#include<vector>
+#include<set>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        vector<multiset<int,greater<int>>> v3,v4;
+        multiset<int,greater<int>> se;
+        set<char> s1;
+        multiset<char> s2;
+        vector<string> v1,v2;
+        string s;
+        int n,i,c,j,count=0,k,m;
+        cin>>n;
+        for(i=0;i<n;i++)
+        {
+            cin>>s;
+            v1.push_back(s);
+        }
+        sort(v1.begin(),v1.end());
+        int a[v1.size()];
+        cin>>n;
+        for(i=0;i<n;i++)
+        {
+            cin>>s;
+            v2.push_back(s);
+        }
+        sort(v2.begin(),v2.end());
+        for(auto i=v1.begin();i!=v1.end();i++)
+        {
+            s1.clear();
+            s2.clear();
+            se.clear();
+            s=*i;
+            for(j=0;j<s.length();j++)
+            {
+                s2.insert(s[j]);
+                s1.insert(s[j]);
+            }
+            for(auto j=s1.begin();j!=s1.end();j++)
+            {
+                c=s2.count(*j);
+                se.insert(c);
+            }
+            v3.push_back(se);
+        }
+        
+        for(auto i=v2.begin();i!=v2.end();i++)
+        {
+            s1.clear();
+            s2.clear();
+            se.clear();
+            s=*i;
+            for(j=0;j<s.length();j++)
+            {
+                s2.insert(s[j]);
+                s1.insert(s[j]);
+            }
+            for(auto j=s1.begin();j!=s1.end();j++)
+            {
+                c=s2.count(*j);
+                se.insert(c);
+            }
+            v4.push_back(se);
+        }
+    /*    for(auto i=v4.begin();i!=v4.end();i++)                           # only for checking the elements.
+        {
+			auto x=*i;
+            for(auto y=x.begin();y!=x.end();y++)
+            {
+                cout<<*y;
+            }
+            cout<<endl;
+        }
+    */   
+        for(i=0;i<v3.size();i++)
+        {
+            count=0;
+            for(j=0;j<v4.size();j++)
+            {
+                if(v3[i]==v4[j])
+                    count++;
+            }
+            a[i]=count;
+        }
+        m=*max_element(a, a + v3.size());
+        if(m==0)
+        {
+            cout<<"stalemate"<<endl;
+        }
+        else
+        {
+          for(i=0;i<v3.size();i++)
+        	{
+            	if(a[i]==m)
+                    cout<<v1[i]<<" ";
+        	}
+        	cout<<endl;  
+        }
+        
+    }
+}
+
+
+
