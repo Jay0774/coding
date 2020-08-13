@@ -1,0 +1,145 @@
+PROBLEM:
+
+Three characters { #, *, . } represents a constellation of stars and galaxies in space. Each galaxy is demarcated by # characters. There can be one or many stars in a given galaxy. Stars can only be in shape of vowels { A, E, I, O, U } . A collection of * in the shape of the vowels is a star. A star is contained in a 3x3 block. Stars cannot be overlapping. The dot(.) character denotes empty space.
+
+Given 3xN matrix comprising of { #, *, . } character, find the galaxy and stars within them.
+
+Note: Please pay attention to how vowel A is denoted in a 3x3 block in the examples section below.
+
+Constraints
+
+3 <= N <= 10^5
+
+Input
+
+Input consists of single integer N denoting number of columns.
+
+Output
+
+Output contains vowels (stars) in order of their occurrence within the given galaxy. Galaxy itself is represented by # character.
+
+Time Limit
+
+1
+
+Examples
+
+Example 1
+
+Input
+
+18
+
+* . * # * * * # * * * # * * * . * .
+
+* . * # * . * # . * . # * * * * * *
+
+* * * # * * * # * * * # * * * * . *
+
+Output
+
+U#O#I#EA
+
+Explanation
+
+As it can be seen that the stars make the image of the alphabets U, O, I, E and A respectively.
+
+________________________________________________________________________________________________________________________________________________________________________
+
+SOLUTION:
+
+#include <iostream>
+#include <bits/stdc++.h>
+#include <set>
+#include <vector>
+using namespace std;
+int main() 
+    {
+        vector<string> m;
+        int n;
+        cin>>n;
+        char a[3+1][n+1];
+        string s,s1;
+        int i,j,c=0;
+        for(i=1;i<=3;i++)
+        {
+            for(j=1;j<=n;j++)
+            {
+                cin>>a[i][j];
+            }
+        }
+        for(j=1;j<=n;j++)
+        {
+            for(i=1;i<=3;i++)
+            {
+                if(i==1)
+                {
+                    if(a[i][j]=='#')
+                    {
+                        c++;
+                        cout<<s<<endl;
+                        m.push_back(s);
+                        s.clear();
+                        break;
+                    }
+                    else if(a[i][j]=='.' && a[i+1][j]=='.' && a[i+2][j]=='.')
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if(s.length()==9)
+                        {
+                        cout<<s<<endl;
+                        m.push_back(s);
+                        s.clear();
+                        }
+                        s+=a[i][j];
+                    }
+                }
+                else
+                {
+                    s+=a[i][j];
+                }
+            }
+        }
+        cout<<s<<endl;
+        m.push_back(s);
+        s.clear();
+        for(auto k=m.begin();k!=m.end();k++)
+        {
+            s=*k;
+            if(s[0]=='.' && s[1]=='*' && s[2]=='*')
+            {
+                s1+='A';
+            }
+            else if(s[0]=='*' && s[1]=='.' && s[2]=='*')
+            {
+                s1+='I';
+            }
+            else if(s[0]=='*' && s[1]=='*' && s[2]=='*')
+            {
+                if(s[3]=='*' && s[4]=='*' && s[5]=='*')
+                {
+                    s1+='E';
+                }
+                else if(s[3]=='*' && s[4]=='.' && s[5]=='*')
+                {
+                    s1+='O';
+                }
+                else if(s[3]=='.' && s[4]=='.' && s[5]=='*')
+                {
+                    s1+='U';
+                }
+            }
+            if(c>0)
+            {
+                s1+='#';
+                c--;
+            }
+        }
+        cout<<s1<<endl;
+	return 0;
+	}
+	
+
